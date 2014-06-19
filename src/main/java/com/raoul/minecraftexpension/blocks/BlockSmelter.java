@@ -138,7 +138,7 @@ public class BlockSmelter extends BlockContainer
 
         if (p_149931_0_)
         {
-            world.setBlock(x, y, z, BlocksInit.Smelter_lit);
+            world.setBlock(x, y, z, BlocksInit.Smelter);
         }
         else
         {

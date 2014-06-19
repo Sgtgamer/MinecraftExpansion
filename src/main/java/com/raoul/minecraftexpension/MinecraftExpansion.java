@@ -1,12 +1,13 @@
 package com.raoul.minecraftexpension;
 
-import com.raoul.minecraftexpension.tile_entity.TileEntityMESmelter;
+import com.raoul.minecraftexpension.tile_entity.TileEntityCompressor;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
 
+import com.raoul.minecraftexpension.tile_entity.TileEntityMESmelter;
 import com.raoul.minecraftexpension.Handler.GuiHandler;
 import com.raoul.minecraftexpension.init.BlocksInit;
 import com.raoul.minecraftexpension.init.ItemsInit;
@@ -63,6 +64,7 @@ public class MinecraftExpansion
     	GameRegistry.registerWorldGenerator(oregenme, 15);
        	NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
         GameRegistry.registerTileEntity(TileEntityMESmelter.class, "tileentitymesmelter");
+        GameRegistry.registerTileEntity(TileEntityCompressor.class, "tileenstitycompressor");
     }
     
     //Handle interaction with other mods, complete your setup based on this.

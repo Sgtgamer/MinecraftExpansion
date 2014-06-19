@@ -8,6 +8,7 @@ import com.raoul.minecraftexpension.blocks.BlockMEStone;
 import com.raoul.minecraftexpension.blocks.BlockPortalFire;
 import com.raoul.minecraftexpension.blocks.BlockWorkstation;
 import com.raoul.minecraftexpension.blocks.BlockSmelter;
+import com.raoul.minecraftexpension.blocks.BlockCompressor;
 import com.raoul.minecraftexpension.blocks.OreBlock;
 import com.raoul.minecraftexpension.reference.Reference;
 
@@ -31,7 +32,7 @@ public class BlocksInit
 	
 	public static final Block Workstation = new BlockWorkstation().setBlockName("blockworkstation");
     public static final Block Smelter = new BlockSmelter(false).setBlockName("blocksmelter");
-    public static final Block Smelter_lit = new BlockSmelter(true).setBlockName("blocksmelter_lit");
+    public static final Block Compressor = new BlockCompressor().setBlockName("blockcompressor");
 	
 	public static void Init()
 	{		
@@ -51,6 +52,6 @@ public class BlocksInit
 		
 		GameRegistry.registerBlock(Workstation, "workstation");
         GameRegistry.registerBlock(Smelter, "smelter");
-        //GameRegistry.registerBlock(Smelter_lit, "smelter_lit");
+        GameRegistry.registerBlock(Compressor, "compressor");
 	}
 }

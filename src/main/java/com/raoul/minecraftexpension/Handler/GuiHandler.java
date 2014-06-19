@@ -2,9 +2,9 @@ package com.raoul.minecraftexpension.Handler;
 
 import com.raoul.minecraftexpension.init.BlocksInit;
 import com.raoul.minecraftexpension.inventory.ContainerSmelter;
-import com.raoul.minecraftexpension.inventory.ContainerWorkstation;
+import com.raoul.minecraftexpension.inventory.Workstation.ContainerWorkstation;
 import com.raoul.minecraftexpension.inventory.GuiSmelter;
-import com.raoul.minecraftexpension.inventory.GuiWorkstation;
+import com.raoul.minecraftexpension.inventory.Workstation.GuiWorkstation;
 
 import com.raoul.minecraftexpension.reference.GuiId;
 import com.raoul.minecraftexpension.tile_entity.TileEntityMESmelter;
