@@ -32,7 +32,7 @@ public class BlocksInit
 	
 	public static final Block Workstation = new BlockWorkstation().setBlockName("blockworkstation");
     public static final Block Smelter = new BlockSmelter(false).setBlockName("blocksmelter");
-    public static final Block Compressor = new BlockCompressor().setBlockName("blockcompressor");
+    public static final Block Compressor = new BlockCompressor(false).setBlockName("blockcompressor");
 	
 	public static void Init()
 	{		

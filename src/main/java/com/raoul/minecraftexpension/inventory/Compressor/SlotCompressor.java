@@ -1,7 +1,6 @@
-package com.raoul.minecraftexpension.inventory;
+package com.raoul.minecraftexpension.inventory.Compressor;
 
-import com.raoul.minecraftexpension.Smelting.SmelterRecipes;
-
+import com.raoul.minecraftexpension.Smelting.CompressorRecipes;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -9,14 +8,13 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 
-public class SlotSmelter extends Slot
+public class SlotCompressor extends Slot
 {
-
     /** The player that is using the GUI where this slot resides. */
     private EntityPlayer thePlayer;
     private int field_75228_b;
 
-    public SlotSmelter(EntityPlayer player, IInventory par2IInventory, int par3, int par4, int par5)
+    public SlotCompressor(EntityPlayer player, IInventory par2IInventory, int par3, int par4, int par5)
     {
         super(par2IInventory, par3, par4, par5);
         this.thePlayer = player;
@@ -70,7 +68,7 @@ public class SlotSmelter extends Slot
         if (!this.thePlayer.worldObj.isRemote)
         {
             int i = this.field_75228_b;
-            float f = SmelterRecipes.smelting().func_151398_b(par1ItemStack);
+            float f = CompressorRecipes.smelting().func_151398_b(par1ItemStack);
             int j;
 
             if (f == 0.0F)

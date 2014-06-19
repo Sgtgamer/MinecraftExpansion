@@ -1,4 +1,4 @@
-package com.raoul.minecraftexpension.inventory;
+package com.raoul.minecraftexpension.inventory.Smelter;
 
 import com.raoul.minecraftexpension.Smelting.SmelterRecipes;
 import com.raoul.minecraftexpension.tile_entity.TileEntityMESmelter;

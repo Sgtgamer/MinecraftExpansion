@@ -1,5 +1,5 @@
 
-package com.raoul.minecraftexpension.inventory;
+package com.raoul.minecraftexpension.inventory.Smelter;
 
 import com.raoul.minecraftexpension.tile_entity.TileEntityMESmelter;
 import net.minecraft.client.gui.inventory.GuiContainer;
