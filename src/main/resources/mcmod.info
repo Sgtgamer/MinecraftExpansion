@@ -1,0 +1,15 @@
+[
+{
+  "modid": "MinecraftExpansion",
+  "name": "MinecraftExpansion",
+  "description": "A mod that adds more to minecraft.",
+  "version": "1.0",
+  "mcversion": "1.7.2",
+  "updateUrl": "",
+  "authorList": ["Raoul"],
+  "credits": "Raoul",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -1,0 +1,46 @@
+#Ruby Tools
+item.rubypickaxe.name=Ruby Pickaxe
+item.rubyaxe.name=Ruby Axe
+item.rubyshovel.name=Ruby Shovel
+item.rubyhoe.name=Ruby Hoe
+
+#Sapphire Tools
+item.sapphirepickaxe.name=Sapphire Pickaxe
+item.sapphireaxe.name=Sapphire Axe
+item.sapphireshovel.name=Sapphire Shovel
+item.sapphirehoe.name=Sapphire Hoe
+
+#Amethyst Tools
+item.amethystpickaxe.name=Amethyst Pickaxe
+item.amethystaxe.name=Amethyst Axe
+item.amethystshovel.name=Amethyst Shovel
+item.amethysthoe.name=Amethyst Hoe
+
+#Emerald Tools
+item.emeraldpickaxe.name=Emerald Pickaxe
+item.emeraldaxe.name=Emerald Axe
+item.emeraldshovel.name=Emerald Shovel
+item.emeraldhoe.name=Emerald Hoe
+
+#Items
+item.stonechunk.name=Stone Chunk
+item.ironorechunk.name=Iron Chunk
+item.goldorechunk.name=Gold Chunk
+item.roughdiamond.name=Rough Diamond
+item.roughruby.name=Rough Ruby
+item.roughsapphire.name=Rough Sapphire
+item.roughamethyst.name=Rough Amethyst
+item.roughemerald.name=Rough Emerald
+
+#Ore Blocks
+tile.rubyore.name=Ruby Ore
+tile.sapphireore.name=Sapphire Ore
+tile.amethystore.name=Amethyst Ore
+tile.emeraldore.name=Emerald Ore
+
+tile.blockmestone.name=Stone
+tile.blockmeironore.name=Iron Ore
+tile.blockmegoldore.name=Gold Ore
+tile.blockmediamondore.name=Diamond Ore
+
+tile.blockworkstation.name=WorkStation
