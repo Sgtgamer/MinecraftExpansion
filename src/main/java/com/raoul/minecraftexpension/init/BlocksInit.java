@@ -49,7 +49,7 @@ public class BlocksInit
 		
 		GameRegistry.registerBlock(PortalBlock, "portalblock");
 		GameRegistry.registerBlock(PortalFire, "portalfire");
-		
+
 		GameRegistry.registerBlock(Workstation, "workstation");
         GameRegistry.registerBlock(Smelter, "smelter");
         GameRegistry.registerBlock(Compressor, "compressor");

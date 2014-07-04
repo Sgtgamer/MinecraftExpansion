@@ -1,5 +1,7 @@
-package com.raoul.minecraftexpension.Smelting;
+package com.raoul.minecraftexpension.crafting.Recipes;
 
+import com.raoul.minecraftexpension.init.BlocksInit;
+import com.raoul.minecraftexpension.init.ItemsInit;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -29,10 +31,18 @@ public class SmelterRecipes
     //Recipes
     private SmelterRecipes()
     {
-        this.func_151393_a(Blocks.netherrack, new ItemStack(Items.netherbrick), 0.1F);
+        this.Smelting(BlocksInit.MECobble, new ItemStack(BlocksInit.MEStone), 0.2F);
+        /*Ores Smelting to Chunks*/
+        this.Smelting(BlocksInit.MEIronOre, new ItemStack(ItemsInit.IronOreChunk), 0.5F);
+        this.Smelting(BlocksInit.MEGoldOre, new ItemStack(ItemsInit.GoldOreChunk), 0.5F);
+        this.Smelting(BlocksInit.RubyOre, new ItemStack(ItemsInit.RoughRuby), 0.6F);
+        this.Smelting(BlocksInit.SapphireOre, new ItemStack(ItemsInit.RoughSapphire), 0.6F);
+        this.Smelting(BlocksInit.AmethystOre, new ItemStack(ItemsInit.RoughAmethyst), 0.6F);
+        this.Smelting(BlocksInit.EmeraldOre, new ItemStack(ItemsInit.RoughEmerald), 0.6F);
+        this.Smelting(BlocksInit.MEDiamondOre, new ItemStack(ItemsInit.RoughDiamond), 0.6F);
     }
 
-    public void func_151393_a(Block block, ItemStack itemstack, float p_151393_3_)
+    public void Smelting(Block block, ItemStack itemstack, float p_151393_3_)
     {
         this.func_151396_a(Item.getItemFromBlock(block), itemstack, p_151393_3_);
     }

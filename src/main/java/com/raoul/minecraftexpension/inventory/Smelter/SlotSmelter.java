@@ -1,6 +1,6 @@
 package com.raoul.minecraftexpension.inventory.Smelter;
 
-import com.raoul.minecraftexpension.Smelting.SmelterRecipes;
+import com.raoul.minecraftexpension.crafting.Recipes.SmelterRecipes;
 
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;

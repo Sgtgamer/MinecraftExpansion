@@ -37,7 +37,7 @@ public class ItemsInit
 		GameRegistry.registerItem(RoughSapphire, "roughsapphire");
 		GameRegistry.registerItem(RoughAmethyst, "roughamethyst");
 		GameRegistry.registerItem(RoughEmerald, "roughemerald");
-		
+		//TODO GIVE a Name in .Lang File
 		GameRegistry.registerItem(PortalPlacer, "portalplacer");
 		
 	}

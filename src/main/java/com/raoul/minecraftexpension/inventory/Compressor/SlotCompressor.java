@@ -1,6 +1,6 @@
 package com.raoul.minecraftexpension.inventory.Compressor;
 
-import com.raoul.minecraftexpension.Smelting.CompressorRecipes;
+import com.raoul.minecraftexpension.crafting.Recipes.CompressorRecipes;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

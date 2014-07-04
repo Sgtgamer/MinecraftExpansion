@@ -37,8 +37,6 @@ public class WorkstationCraftingManager
 
 
         Collections.sort(this.recipes, new WorkstationRecipeSorter(this));
-        //System.out.println(TimeTable.Wood + "  This Is The Crafting Time Of the Item =======================================================");
-        //System.out.println(recipes.get(Test));
     }
 
     public WorkstationShapedRecipes addShapedRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)

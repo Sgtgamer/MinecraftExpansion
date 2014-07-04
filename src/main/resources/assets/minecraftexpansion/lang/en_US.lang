@@ -37,10 +37,19 @@ tile.rubyore.name=Ruby Ore
 tile.sapphireore.name=Sapphire Ore
 tile.amethystore.name=Amethyst Ore
 tile.emeraldore.name=Emerald Ore
-
-tile.blockmestone.name=Stone
 tile.blockmeironore.name=Iron Ore
 tile.blockmegoldore.name=Gold Ore
 tile.blockmediamondore.name=Diamond Ore
 
+#Stone Blocks
+tile.blockmestone.name=Stone
+tile.blockcobblestone.name=CobbleStone
+
+#Machines
 tile.blockworkstation.name=WorkStation
+tile.blocksmelter.name=Smelter
+tile.blockcompressor.name=Compressor
+
+container.workstation=WorkStation
+container.smelter=Smelter
+container.compressor=Compressor

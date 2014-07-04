@@ -1,7 +1,7 @@
-package com.raoul.minecraftexpension.inventory.Smelter;
+package com.raoul.minecraftexpension.inventory.Compressor;
 
-import com.raoul.minecraftexpension.crafting.Recipes.SmelterRecipes;
-import com.raoul.minecraftexpension.tile_entity.TileEntityMESmelter;
+import com.raoul.minecraftexpension.crafting.Recipes.CompressorRecipes;
+import com.raoul.minecraftexpension.tile_entity.TileEntityCompressor;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -10,19 +10,19 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerSmelter extends Container
+public class ContainerCompressor extends Container
 {
-    private TileEntityMESmelter tileSmelter;
+    private TileEntityCompressor tilecompressor;
     private int lastCookTime;
     private int lastBurnTime;
     private int lastItemBurnTime;
 
-    public ContainerSmelter(InventoryPlayer par1InventoryPlayer, TileEntityMESmelter TileEntityMESmelter)
+    public ContainerCompressor(InventoryPlayer par1InventoryPlayer, TileEntityCompressor tileentitycompressor)
     {
-        this.tileSmelter = TileEntityMESmelter;
-        this.addSlotToContainer(new Slot(TileEntityMESmelter, 0, 56, 17));
-        this.addSlotToContainer(new Slot(TileEntityMESmelter, 1, 56, 53));
-        this.addSlotToContainer(new SlotSmelter(par1InventoryPlayer.player, TileEntityMESmelter, 2, 116, 35));
+        this.tilecompressor = tileentitycompressor;
+        this.addSlotToContainer(new Slot(tileentitycompressor, 0, 56, 17));
+        this.addSlotToContainer(new Slot(tileentitycompressor, 1, 56, 53));
+        this.addSlotToContainer(new SlotCompressor(par1InventoryPlayer.player, tileentitycompressor, 2, 116, 35));
         int i;
 
         for (i = 0; i < 3; ++i)
@@ -43,9 +43,9 @@ public class ContainerSmelter extends Container
     public void addCraftingToCrafters(ICrafting par1ICrafting)
     {
         super.addCraftingToCrafters(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0, this.tileSmelter.smelterCookTime);
-        par1ICrafting.sendProgressBarUpdate(this, 1, this.tileSmelter.smelterBurnTime);
-        par1ICrafting.sendProgressBarUpdate(this, 2, this.tileSmelter.currentItemBurnTime);
+        par1ICrafting.sendProgressBarUpdate(this, 0, this.tilecompressor.compressorCookTime);
+        par1ICrafting.sendProgressBarUpdate(this, 1, this.tilecompressor.compressorBurnTime);
+        par1ICrafting.sendProgressBarUpdate(this, 2, this.tilecompressor.currentItemBurnTime);
     }
 
     /**
@@ -59,25 +59,25 @@ public class ContainerSmelter extends Container
         {
             ICrafting icrafting = (ICrafting)this.crafters.get(i);
 
-            if (this.lastCookTime != this.tileSmelter.smelterCookTime)
+            if (this.lastCookTime != this.tilecompressor.compressorCookTime)
             {
-                icrafting.sendProgressBarUpdate(this, 0, this.tileSmelter.smelterCookTime);
+                icrafting.sendProgressBarUpdate(this, 0, this.tilecompressor.compressorCookTime);
             }
 
-            if (this.lastBurnTime != this.tileSmelter.smelterBurnTime)
+            if (this.lastBurnTime != this.tilecompressor.compressorBurnTime)
             {
-                icrafting.sendProgressBarUpdate(this, 1, this.tileSmelter.smelterBurnTime);
+                icrafting.sendProgressBarUpdate(this, 1, this.tilecompressor.compressorBurnTime);
             }
 
-            if (this.lastItemBurnTime != this.tileSmelter.currentItemBurnTime)
+            if (this.lastItemBurnTime != this.tilecompressor.currentItemBurnTime)
             {
-                icrafting.sendProgressBarUpdate(this, 2, this.tileSmelter.currentItemBurnTime);
+                icrafting.sendProgressBarUpdate(this, 2, this.tilecompressor.currentItemBurnTime);
             }
         }
 
-        this.lastCookTime = this.tileSmelter.smelterCookTime;
-        this.lastBurnTime = this.tileSmelter.smelterBurnTime;
-        this.lastItemBurnTime = this.tileSmelter.currentItemBurnTime;
+        this.lastCookTime = this.tilecompressor.compressorCookTime;
+        this.lastBurnTime = this.tilecompressor.compressorBurnTime;
+        this.lastItemBurnTime = this.tilecompressor.currentItemBurnTime;
     }
 
 
@@ -85,23 +85,23 @@ public class ContainerSmelter extends Container
     {
         if (par1 == 0)
         {
-            this.tileSmelter.smelterCookTime = par2;
+            this.tilecompressor.compressorCookTime = par2;
         }
 
         if (par1 == 1)
         {
-            this.tileSmelter.smelterBurnTime = par2;
+            this.tilecompressor.compressorBurnTime = par2;
         }
 
         if (par1 == 2)
         {
-            this.tileSmelter.currentItemBurnTime = par2;
+            this.tilecompressor.currentItemBurnTime = par2;
         }
     }
 
     public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
-        return this.tileSmelter.isUseableByPlayer(par1EntityPlayer);
+        return this.tilecompressor.isUseableByPlayer(par1EntityPlayer);
     }
 
     /**
@@ -128,14 +128,14 @@ public class ContainerSmelter extends Container
             }
             else if (par2 != 1 && par2 != 0)
             {
-                if (SmelterRecipes.smelting().getSmeltingResult(itemstack1) != null)
+                if (CompressorRecipes.smelting().getSmeltingResult(itemstack1) != null)
                 {
                     if (!this.mergeItemStack(itemstack1, 0, 1, false))
                     {
                         return null;
                     }
                 }
-                else if (TileEntityMESmelter.isItemFuel(itemstack1))
+                else if (TileEntityCompressor.isItemFuel(itemstack1))
                 {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {

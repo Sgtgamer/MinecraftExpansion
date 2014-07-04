@@ -1,38 +1,43 @@
 package com.raoul.minecraftexpension.tile_entity;
 
-import com.raoul.minecraftexpension.crafting.Recipes.SmelterRecipes;
-import com.raoul.minecraftexpension.blocks.BlockSmelter;
+import com.raoul.minecraftexpension.blocks.BlockCompressor;
+import com.raoul.minecraftexpension.crafting.Recipes.CompressorRecipes;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityMESmelter extends TileEntity implements ISidedInventory
+public class TileEntityCompressor extends TileEntity implements ISidedInventory
 {
     private static final int[] slotsTop = new int[] {0};
     private static final int[] slotsBottom = new int[] {2, 1};
     private static final int[] slotsSides = new int[] {1};
+
     /**
-     * The ItemStacks that hold the items currently being used in the smelter
+     * The ItemStacks that hold the items currently being used in the compressor
      */
-    private ItemStack[] smelterItemStacks = new ItemStack[3];
-    /** The number of ticks that the smelter will keep burning */
-    public int smelterBurnTime;
+    private ItemStack[] compressorItemStacks = new ItemStack[3];
+    /** The number of ticks that the compressor will keep burning */
+    public int compressorBurnTime;
     /**
-     * The number of ticks that a fresh copy of the currently-burning item would keep the smelter burning for
+     * The number of ticks that a fresh copy of the currently-burning item would keep the compressor burning for
      */
     public int currentItemBurnTime;
     /** The number of ticks that the current item has been cooking for */
-    public int smelterCookTime;
+    public int compressorCookTime;
     private String field_145958_o;
 
     /**
@@ -40,7 +45,7 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
      */
     public int getSizeInventory()
     {
-        return this.smelterItemStacks.length;
+        return this.compressorItemStacks.length;
     }
 
     /**
@@ -48,7 +53,7 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
      */
     public ItemStack getStackInSlot(int par1)
     {
-        return this.smelterItemStacks[par1];
+        return this.compressorItemStacks[par1];
     }
 
     /**
@@ -57,23 +62,23 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
-        if (this.smelterItemStacks[par1] != null)
+        if (this.compressorItemStacks[par1] != null)
         {
             ItemStack itemstack;
 
-            if (this.smelterItemStacks[par1].stackSize <= par2)
+            if (this.compressorItemStacks[par1].stackSize <= par2)
             {
-                itemstack = this.smelterItemStacks[par1];
-                this.smelterItemStacks[par1] = null;
+                itemstack = this.compressorItemStacks[par1];
+                this.compressorItemStacks[par1] = null;
                 return itemstack;
             }
             else
             {
-                itemstack = this.smelterItemStacks[par1].splitStack(par2);
+                itemstack = this.compressorItemStacks[par1].splitStack(par2);
 
-                if (this.smelterItemStacks[par1].stackSize == 0)
+                if (this.compressorItemStacks[par1].stackSize == 0)
                 {
-                    this.smelterItemStacks[par1] = null;
+                    this.compressorItemStacks[par1] = null;
                 }
 
                 return itemstack;
@@ -91,10 +96,10 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
-        if (this.smelterItemStacks[par1] != null)
+        if (this.compressorItemStacks[par1] != null)
         {
-            ItemStack itemstack = this.smelterItemStacks[par1];
-            this.smelterItemStacks[par1] = null;
+            ItemStack itemstack = this.compressorItemStacks[par1];
+            this.compressorItemStacks[par1] = null;
             return itemstack;
         }
         else
@@ -108,7 +113,7 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
-        this.smelterItemStacks[par1] = par2ItemStack;
+        this.compressorItemStacks[par1] = par2ItemStack;
 
         if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
         {
@@ -121,7 +126,7 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
      */
     public String getInventoryName()
     {
-        return this.hasCustomInventoryName() ? this.field_145958_o : "container.smelter";
+        return this.hasCustomInventoryName() ? this.field_145958_o : "container.compressor";
     }
 
     /**
@@ -141,22 +146,22 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
     {
         super.readFromNBT(p_145839_1_);
         NBTTagList nbttaglist = p_145839_1_.getTagList("Items", 10);
-        this.smelterItemStacks = new ItemStack[this.getSizeInventory()];
+        this.compressorItemStacks = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
 
-            if (b0 >= 0 && b0 < this.smelterItemStacks.length)
+            if (b0 >= 0 && b0 < this.compressorItemStacks.length)
             {
-                this.smelterItemStacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+                this.compressorItemStacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
 
-        this.smelterBurnTime = p_145839_1_.getShort("BurnTime");
-        this.smelterCookTime = p_145839_1_.getShort("CookTime");
-        this.currentItemBurnTime = getItemBurnTime(this.smelterItemStacks[1]);
+        this.compressorBurnTime = p_145839_1_.getShort("BurnTime");
+        this.compressorCookTime = p_145839_1_.getShort("CookTime");
+        this.currentItemBurnTime = getItemBurnTime(this.compressorItemStacks[1]);
 
         if (p_145839_1_.hasKey("CustomName", 8))
         {
@@ -167,17 +172,17 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
     public void writeToNBT(NBTTagCompound p_145841_1_)
     {
         super.writeToNBT(p_145841_1_);
-        p_145841_1_.setShort("BurnTime", (short)this.smelterBurnTime);
-        p_145841_1_.setShort("CookTime", (short)this.smelterCookTime);
+        p_145841_1_.setShort("BurnTime", (short)this.compressorBurnTime);
+        p_145841_1_.setShort("CookTime", (short)this.compressorCookTime);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.smelterItemStacks.length; ++i)
+        for (int i = 0; i < this.compressorItemStacks.length; ++i)
         {
-            if (this.smelterItemStacks[i] != null)
+            if (this.compressorItemStacks[i] != null)
             {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
                 nbttagcompound1.setByte("Slot", (byte)i);
-                this.smelterItemStacks[i].writeToNBT(nbttagcompound1);
+                this.compressorItemStacks[i].writeToNBT(nbttagcompound1);
                 nbttaglist.appendTag(nbttagcompound1);
             }
         }
@@ -205,7 +210,7 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
     @SideOnly(Side.CLIENT)
     public int getCookProgressScaled(int p_145953_1_)
     {
-        return this.smelterCookTime * p_145953_1_ / 200;
+        return this.compressorCookTime * p_145953_1_ / 200;
     }
 
     /**
@@ -220,45 +225,45 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
             this.currentItemBurnTime = 200;
         }
 
-        return this.smelterBurnTime * p_145955_1_ / this.currentItemBurnTime;
+        return this.compressorBurnTime * p_145955_1_ / this.currentItemBurnTime;
 
     }
 
     /**
-     * smelter isBurning
+     * compressor isBurning
      */
     public boolean isBurning()
     {
-        return this.smelterBurnTime > 0;
+        return this.compressorBurnTime > 0;
     }
 
     public void updateEntity()
     {
-        boolean flag = this.smelterBurnTime > 0;
+        boolean flag = this.compressorBurnTime > 0;
         boolean flag1 = false;
 
-        if (this.smelterBurnTime > 0)
+        if (this.compressorBurnTime > 0)
         {
-            --this.smelterBurnTime;
+            --this.compressorBurnTime;
         }
 
         if (!this.worldObj.isRemote)
         {
-            if (this.smelterBurnTime == 0 && this.canSmelt())
+            if (this.compressorBurnTime == 0 && this.canSmelt())
             {
-                this.currentItemBurnTime = this.smelterBurnTime = getItemBurnTime(this.smelterItemStacks[1]);
+                this.currentItemBurnTime = this.compressorBurnTime = getItemBurnTime(this.compressorItemStacks[1]);
 
-                if (this.smelterBurnTime > 0)
+                if (this.compressorBurnTime > 0)
                 {
                     flag1 = true;
 
-                    if (this.smelterItemStacks[1] != null)
+                    if (this.compressorItemStacks[1] != null)
                     {
-                        --this.smelterItemStacks[1].stackSize;
+                        --this.compressorItemStacks[1].stackSize;
 
-                        if (this.smelterItemStacks[1].stackSize == 0)
+                        if (this.compressorItemStacks[1].stackSize == 0)
                         {
-                            this.smelterItemStacks[1] = smelterItemStacks[1].getItem().getContainerItem(smelterItemStacks[1]);
+                            this.compressorItemStacks[1] = compressorItemStacks[1].getItem().getContainerItem(compressorItemStacks[1]);
                         }
                     }
                 }
@@ -266,24 +271,24 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
 
             if (this.isBurning() && this.canSmelt())
             {
-                ++this.smelterCookTime;
+                ++this.compressorCookTime;
 
-                if (this.smelterCookTime == 200)
+                if (this.compressorCookTime == 200)
                 {
-                    this.smelterCookTime = 0;
+                    this.compressorCookTime = 0;
                     this.smeltItem();
                     flag1 = true;
                 }
             }
             else
             {
-                this.smelterCookTime = 0;
+                this.compressorCookTime = 0;
             }
 
-            if (flag != this.smelterBurnTime > 0)
+            if (flag != this.compressorBurnTime > 0)
             {
                 flag1 = true;
-                BlockSmelter.updateFurnaceBlockState(this.smelterBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                BlockCompressor.updateCompressorBlockState(this.compressorBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
         }
 
@@ -294,54 +299,54 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
     }
 
     /**
-     * Returns true if the smelter can smelt an item, i.e. has a source item, destination stack isn't full, etc.
+     * Returns true if the compressor can smelt an item, i.e. has a source item, destination stack isn't full, etc.
      */
     private boolean canSmelt()
     {
-        if (this.smelterItemStacks[0] == null)
+        if (this.compressorItemStacks[0] == null)
         {
             return false;
         }
         else
         {
-            ItemStack itemstack = SmelterRecipes.smelting().getSmeltingResult(this.smelterItemStacks[0]);
+            ItemStack itemstack = CompressorRecipes.smelting().getSmeltingResult(this.compressorItemStacks[0]);
             if (itemstack == null) return false;
-            if (this.smelterItemStacks[2] == null) return true;
-            if (!this.smelterItemStacks[2].isItemEqual(itemstack)) return false;
-            int result = smelterItemStacks[2].stackSize + itemstack.stackSize;
-            return result <= getInventoryStackLimit() && result <= this.smelterItemStacks[2].getMaxStackSize(); //Forge BugFix: Make it respect stack sizes properly.
+            if (this.compressorItemStacks[2] == null) return true;
+            if (!this.compressorItemStacks[2].isItemEqual(itemstack)) return false;
+            int result = compressorItemStacks[2].stackSize + itemstack.stackSize;
+            return result <= getInventoryStackLimit() && result <= this.compressorItemStacks[2].getMaxStackSize(); //Forge BugFix: Make it respect stack sizes properly.
         }
     }
 
     /**
-     * Turn one item from the smelter source stack into the appropriate smelted item in the smelter result stack
+     * Turn one item from the compressor source stack into the appropriate smelted item in the compressor result stack
      */
     public void smeltItem()
     {
         if (this.canSmelt())
         {
-            ItemStack itemstack = SmelterRecipes.smelting().getSmeltingResult(this.smelterItemStacks[0]);
+            ItemStack itemstack = CompressorRecipes.smelting().getSmeltingResult(this.compressorItemStacks[0]);
 
-            if (this.smelterItemStacks[2] == null)
+            if (this.compressorItemStacks[2] == null)
             {
-                this.smelterItemStacks[2] = itemstack.copy();
+                this.compressorItemStacks[2] = itemstack.copy();
             }
-            else if (this.smelterItemStacks[2].getItem() == itemstack.getItem())
+            else if (this.compressorItemStacks[2].getItem() == itemstack.getItem())
             {
-                this.smelterItemStacks[2].stackSize += itemstack.stackSize; // Forge BugFix: Results may have multiple items
+                this.compressorItemStacks[2].stackSize += itemstack.stackSize; // Forge BugFix: Results may have multiple items
             }
 
-            --this.smelterItemStacks[0].stackSize;
+            --this.compressorItemStacks[0].stackSize;
 
-            if (this.smelterItemStacks[0].stackSize <= 0)
+            if (this.compressorItemStacks[0].stackSize <= 0)
             {
-                this.smelterItemStacks[0] = null;
+                this.compressorItemStacks[0] = null;
             }
         }
     }
 
     /**
-     * Returns the number of ticks that the supplied fuel item will keep the smelter burning, or 0 if the item isn't
+     * Returns the number of ticks that the supplied fuel item will keep the compressor burning, or 0 if the item isn't
      * fuel
      */
     public static int getItemBurnTime(ItemStack p_145952_0_)
@@ -374,9 +379,6 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
                 }
             }
 
-            if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
-            if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
-            if (item instanceof ItemHoe && ((ItemHoe)item).getToolMaterialName().equals("WOOD")) return 200;
             if (item == Items.stick) return 100;
             if (item == Items.coal) return 1600;
             if (item == Items.lava_bucket) return 20000;
@@ -389,7 +391,7 @@ public class TileEntityMESmelter extends TileEntity implements ISidedInventory
     public static boolean isItemFuel(ItemStack p_145954_0_)
     {
         /**
-         * Returns the number of ticks that the supplied fuel item will keep the smelter burning, or 0 if the item isn't
+         * Returns the number of ticks that the supplied fuel item will keep the compressor burning, or 0 if the item isn't
          * fuel
          */
         return getItemBurnTime(p_145954_0_) > 0;

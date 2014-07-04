@@ -1,4 +1,4 @@
-package com.raoul.minecraftexpension.Smelting;
+package com.raoul.minecraftexpension.crafting.Recipes;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -29,12 +29,13 @@ public class CompressorRecipes
     //Recipes
     private CompressorRecipes()
     {
-        this.func_151393_a(Blocks.netherrack, new ItemStack(Items.netherbrick), 0.1F);
+        this.Compressor(Blocks.netherrack, new ItemStack(Items.netherbrick), 0.1F);
     }
 
-    public void func_151393_a(Block block, ItemStack itemstack, float p_151393_3_)
+    public void Compressor(Block block, ItemStack itemstack, float p_151393_3_)
     {
         this.func_151396_a(Item.getItemFromBlock(block), itemstack, p_151393_3_);
+
     }
 
     public void func_151396_a(Item item, ItemStack itemstack, float p_151396_3_)
